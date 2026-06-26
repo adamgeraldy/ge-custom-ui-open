@@ -1,0 +1,81 @@
+:root {
+  /* Fonts */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* ── Google-Inspired Color System ──────────────── */
+
+  /* Primary */
+  --color-primary: #1A73E8;
+  --color-primary-hover: #1557B0;
+  --color-primary-light: rgba(26, 115, 232, 0.08);
+  --color-primary-container: #D3E3FD;
+  --color-primary-glow: rgba(26, 115, 232, 0.2);
+
+  /* Surfaces */
+  --bg-page: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-variant: #F8F9FA;
+  --bg-surface-tint: #F1F3F4;
+  --bg-surface-hover: #E8EAED;
+
+  /* Sidebar */
+  --bg-sidebar: #F1F3F4;
+  --bg-sidebar-hover: #E3E5E8;
+  --bg-sidebar-active: #D3E3FD;
+  --text-sidebar: #3C4043;
+  --text-sidebar-muted: #5F6368;
+  --text-sidebar-active: #1A73E8;
+
+  /* Text */
+  --text-primary: #202124;
+  --text-secondary: #5F6368;
+  --text-muted: #9AA0A6;
+  --text-on-primary: #FFFFFF;
+
+  /* Borders */
+  --border-color: #DADCE0;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-focus: rgba(26, 115, 232, 0.4);
+
+  /* Semantic */
+  --color-error: #D93025;
+  --color-error-light: #FCE8E6;
+  --color-success: #1E8E3E;
+  --color-success-light: #E6F4EA;
+  --color-warning: #E37400;
+  --color-warning-light: #FEF7E0;
+
+  /* Layout Spacing */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Shadows — Google-style diffused */
+  --shadow-sm: 0 1px 2px rgba(60, 64, 67, 0.1);
+  --shadow-md: 0 1px 3px rgba(60, 64, 67, 0.15), 0 1px 2px rgba(60, 64, 67, 0.1);
+  --shadow-lg: 0 4px 8px rgba(60, 64, 67, 0.15), 0 1px 3px rgba(60, 64, 67, 0.1);
+  --shadow-xl: 0 8px 24px rgba(60, 64, 67, 0.15), 0 2px 8px rgba(60, 64, 67, 0.08);
+  --shadow-card: 0 1px 3px rgba(60, 64, 67, 0.1);
+  --shadow-popup: 0 4px 16px rgba(60, 64, 67, 0.2);
+
+  /* Borders & Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+  --radius-circle: 50%;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.2, 0, 0, 1);
+  --transition-normal: 0.25s cubic-bezier(0.2, 0, 0, 1);
+  --transition-slow: 0.4s cubic-bezier(0.2, 0, 0, 1);
+}

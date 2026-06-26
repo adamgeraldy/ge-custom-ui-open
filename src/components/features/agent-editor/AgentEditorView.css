@@ -1,0 +1,624 @@
+/* ───────────────────────────────────────────────
+   Agent Editor View — Google-Inspired Light Theme
+   ─────────────────────────────────────────────── */
+
+.agent-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-surface-variant);
+}
+
+/* ── Toolbar ────────────────────────────────── */
+
+.agent-editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  gap: 16px;
+  z-index: 10;
+}
+
+.aet-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.aet-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.aet-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.aet-back-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.aet-separator {
+  width: 1px;
+  height: 24px;
+  background: var(--border-color);
+}
+
+.aet-name-input {
+  background: var(--bg-surface-tint);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 14px;
+  width: 280px;
+  transition: border-color var(--transition-fast);
+}
+
+.aet-name-input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.aet-error {
+  color: var(--color-error);
+  font-size: 12px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.aet-edit-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.agent-editor-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.aet-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.aet-btn--secondary {
+  background: var(--bg-surface-tint);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.aet-btn--secondary:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.aet-btn--primary {
+  background: var(--color-primary);
+  color: var(--text-on-primary);
+}
+
+.aet-btn--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.aet-btn--primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.aet-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Body (Canvas + Panel) ──────────────────── */
+
+.agent-editor-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.agent-editor-canvas {
+  flex: 1;
+  height: 100%;
+  background:
+    radial-gradient(circle, var(--border-color) 1px, transparent 1px) 0 0 / 20px 20px,
+    var(--bg-surface-variant);
+}
+
+/* React Flow overrides for light theme */
+.agent-editor-canvas .react-flow__background {
+  background-color: var(--bg-surface-variant) !important;
+}
+
+.agent-editor-canvas .react-flow__edge-path {
+  stroke: var(--border-color);
+  stroke-width: 2;
+}
+
+.agent-editor-canvas .react-flow__edge.animated .react-flow__edge-path {
+  stroke: var(--color-primary);
+  opacity: 0.5;
+}
+
+.agent-editor-controls {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.agent-editor-controls button {
+  background: var(--bg-surface) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  fill: currentColor !important;
+}
+
+.agent-editor-controls button:hover {
+  background: var(--bg-surface-hover) !important;
+}
+
+.agent-editor-controls button svg {
+  fill: currentColor !important;
+}
+
+/* React Flow minimap */
+.agent-editor-canvas .react-flow__minimap {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+}
+
+/* React Flow handles */
+.agent-editor-canvas .react-flow__handle {
+  background: var(--color-primary) !important;
+}
+
+/* ── Agent Node ─────────────────────────────── */
+
+.agent-node {
+  min-width: 200px;
+  max-width: 260px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.agent-node--selected {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md), 0 0 0 3px var(--color-primary-light);
+}
+
+.agent-node:hover {
+  border-color: var(--bg-surface-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.agent-node-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.agent-node-header--root {
+  background: linear-gradient(135deg, var(--color-primary), #4285f4);
+  color: var(--text-on-primary);
+}
+
+.agent-node-header--sub {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.agent-node-header-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.agent-node-header-label {
+  white-space: nowrap;
+}
+
+.agent-node-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+}
+
+.agent-node-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-on-primary);
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--color-primary), #4285f4);
+}
+
+.agent-node--sub .agent-node-avatar {
+  background: linear-gradient(135deg, #4285f4, var(--color-primary-container));
+  color: var(--color-primary);
+}
+
+.agent-node-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.agent-node-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.agent-node-model {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.agent-node-handle {
+  width: 8px !important;
+  height: 8px !important;
+  background: var(--color-primary) !important;
+  border: 2px solid var(--bg-surface) !important;
+}
+
+/* ── Properties Panel ───────────────────────── */
+
+.node-properties-panel {
+  width: 320px;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-shrink: 0;
+  animation: slideInRight 0.2s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.npp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.npp-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.npp-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.npp-close:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.npp-body {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.npp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.npp-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.npp-input,
+.npp-select,
+.npp-textarea {
+  background: var(--bg-surface-tint);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 13px;
+  padding: 10px 12px;
+  transition: border-color var(--transition-fast);
+  font-family: inherit;
+}
+
+.npp-input:focus,
+.npp-select:focus,
+.npp-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.npp-select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%235F6368' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.npp-select option {
+  background: var(--bg-surface-tint);
+  color: var(--text-primary);
+}
+
+.npp-textarea {
+  resize: vertical;
+  min-height: 60px;
+  line-height: 1.5;
+}
+
+.npp-textarea--sm {
+  min-height: 40px;
+}
+
+.npp-tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.npp-tool-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-primary);
+  padding: 6px 8px;
+  border-radius: var(--radius-xs);
+  transition: background var(--transition-fast);
+}
+
+.npp-tool-item:hover {
+  background: var(--bg-surface-tint);
+}
+
+.npp-tool-item input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.npp-field--danger {
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.npp-delete-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-error);
+  background: var(--color-error-light);
+  color: var(--color-error);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.npp-delete-btn:hover {
+  background: #f8d7d5;
+  border-color: var(--color-error);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Data Source list ─────────────────────── */
+
+.npp-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.npp-ds-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.npp-ds-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-primary);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+  border: 1px solid var(--border-color);
+}
+
+.npp-ds-item:hover {
+  background: var(--bg-surface-tint);
+  border-color: var(--bg-surface-hover);
+}
+
+.npp-ds-item input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.npp-ds-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.npp-ds-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* ── Mobile Responsive ──────────────────────── */
+
+@media (max-width: 768px) {
+  .agent-editor-toolbar {
+    flex-wrap: wrap;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .aet-left {
+    gap: 8px;
+  }
+
+  .aet-name-input {
+    width: 100%;
+    min-width: 0;
+    font-size: 14px;
+  }
+
+  .aet-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .aet-edit-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .agent-editor-body {
+    flex-direction: column;
+  }
+
+  .node-properties-panel {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 50vh;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+    box-shadow: var(--shadow-xl);
+    z-index: 20;
+  }
+
+  .agent-node {
+    min-width: 170px;
+    max-width: 220px;
+  }
+}

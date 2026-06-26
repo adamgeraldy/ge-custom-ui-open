@@ -1,0 +1,179 @@
+/* ── Data Store Popup ────────────────────────── */
+
+.ds-popup {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  min-width: 290px;
+  padding: 6px 0;
+  z-index: 100;
+  box-shadow: var(--shadow-popup);
+  animation: dsPopupIn 0.15s ease-out;
+}
+
+@keyframes dsPopupIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ds-popup-loading,
+.ds-popup-empty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.ds-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.ds-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  gap: 12px;
+  transition: background var(--transition-fast);
+}
+
+.ds-item:hover {
+  background: var(--bg-surface-variant);
+}
+
+.ds-item--all {
+  padding: 12px 18px;
+}
+
+.ds-item--all .ds-item-name {
+  font-weight: 600;
+}
+
+.ds-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.ds-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.ds-icon-generic {
+  color: var(--text-muted);
+}
+
+.ds-item-name {
+  font-size: 14px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 4px 14px;
+}
+
+/* ── Toggle Switch ──────────────────────────── */
+
+.ds-toggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.ds-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ds-toggle-slider {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg-surface-hover);
+  border-radius: 24px;
+  transition: all 0.25s ease;
+}
+
+.ds-toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.ds-toggle input:checked + .ds-toggle-slider {
+  background: var(--color-primary);
+}
+
+.ds-toggle input:checked + .ds-toggle-slider::before {
+  transform: translateX(20px);
+}
+
+/* ── Agent-locked states ───────────────────── */
+
+.ds-agent-locked-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-size: 12px;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.ds-agent-locked-banner strong {
+  font-weight: 600;
+}
+
+.ds-item--disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ds-item--disabled .ds-item-name {
+  color: var(--text-muted);
+}
+
+.ds-item--disabled:hover {
+  background: transparent;
+}
+
+.ds-toggle-slider--disabled {
+  cursor: not-allowed;
+}

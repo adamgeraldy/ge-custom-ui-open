@@ -1,0 +1,237 @@
+.app-header {
+  height: 56px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.header-brand-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.header-logo-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.header-brand-text {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.3px;
+}
+
+.divider-vertical {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-color);
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.crumb-arrow {
+  width: 14px;
+  height: 14px;
+  margin: 0 var(--space-xs);
+  color: var(--text-muted);
+}
+
+.crumb-link {
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.crumb-link:hover {
+  color: var(--color-primary);
+}
+
+.crumb-active {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Header Right */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* New Chat Button */
+.new-chat-btn {
+  background-color: var(--color-primary);
+  color: var(--text-on-primary);
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.new-chat-btn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.new-chat-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* User Avatar */
+.header-avatar-wrapper {
+  position: relative;
+}
+
+.header-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-primary);
+  color: var(--text-on-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition-fast);
+}
+
+.header-avatar:hover {
+  opacity: 0.85;
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.header-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-avatar-initial {
+  font-family: var(--font-display);
+}
+
+/* Avatar Dropdown */
+.avatar-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-popup, 0 4px 16px rgba(0,0,0,0.12));
+  z-index: 50;
+  animation: dropdown-in 0.15s ease-out;
+}
+
+@keyframes dropdown-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.avatar-dropdown-info {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.avatar-dropdown-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.avatar-dropdown-role {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.avatar-dropdown-divider {
+  height: 1px;
+  background: var(--border-color);
+}
+
+.avatar-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.avatar-dropdown-item:hover {
+  background: var(--color-error-light);
+  color: var(--color-error);
+}
+
+.avatar-dropdown-icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── Mobile ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .app-header {
+    height: 48px;
+    padding: 0 var(--space-md);
+  }
+
+  .header-logo-img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header-brand-text {
+    display: none;
+  }
+
+  .breadcrumbs {
+    display: none;
+  }
+
+  .divider-vertical {
+    display: none;
+  }
+
+  .new-chat-btn span {
+    display: none;
+  }
+
+  .new-chat-btn {
+    padding: var(--space-xs);
+    border-radius: var(--radius-circle);
+  }
+}
