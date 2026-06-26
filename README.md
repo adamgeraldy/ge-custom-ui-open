@@ -60,8 +60,8 @@ Before deploying this application, ensure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-org/ge-custom-ui.git
-cd ge-custom-ui
+git clone https://github.com/adamgeraldy/ge-custom-ui-open.git
+cd ge-custom-ui-open
 ```
 
 ### 2. Install Dependencies
