@@ -32,7 +32,7 @@ Before deploying this application, ensure you have:
 
 1. **A GCP Project** with billing enabled
 2. **Gemini Enterprise** (Discovery Engine) set up in your project:
-   - An **Engine** (App) created in [Agent Builder](https://console.cloud.google.com/gen-app-builder)
+   - An **Engine** (App) created in [Gemini Enterprise](https://console.cloud.google.com/gemini-enterprise)
    - At least one **Data Store** connected to the engine
    - The **Gemini Enterprise API** enabled
 3. **OAuth 2.0 Client ID** configured:
@@ -84,7 +84,7 @@ Edit `.env` with your GCP project details:
 # Your GCP Project Number (found in GCP Console → Project Settings)
 VITE_GCP_PROJECT_NUMBER=123456789012
 
-# Your Gemini Enterprise Engine ID (found in Agent Builder → App Settings)
+# Your Gemini Enterprise Engine ID (found in Gemini Enterprise → Apps → ID)
 VITE_GE_ENGINE_ID=your-engine-id_1234567890123
 
 # Your OAuth 2.0 Client ID (from APIs & Credentials)
@@ -96,7 +96,7 @@ VITE_GOOGLE_CLIENT_ID=123456789012-abc123def456.apps.googleusercontent.com
 | Value | Where to Find It |
 |-------|-----------------|
 | **Project Number** | GCP Console → Navigation Menu → IAM & Admin → Settings → Project number |
-| **Engine ID** | Agent Builder → Your App → Settings → Engine ID (or from the URL: `engines/{ENGINE_ID}`) |
+| **Engine ID** | Gemini Enterprise → Apps → Your App → ID (or from the URL: `engines/{ENGINE_ID}`) |
 | **OAuth Client ID** | APIs & Credentials → OAuth 2.0 Client IDs → Your web client → Client ID |
 
 ### 4. Run Development Server
@@ -178,7 +178,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ## Integrating with Your Gemini Enterprise Environment
 
-### 1. Agent Builder Setup
+### 1. Gemini Enterprise Setup
 
 This app communicates with the **Discovery Engine `streamAssist` API** for chat, and the **Agent/Session management APIs** for agent CRUD and history.
 
